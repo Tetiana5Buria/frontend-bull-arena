@@ -1,0 +1,193 @@
+.canvas{
+    position: relative;
+  margin: 0 auto;
+  display: block;
+
+}
+.bodyMatador {
+    position: relative;
+    width: 50px;
+    height: 100px;
+    background: linear-gradient(to bottom, black, red);
+    margin: auto;
+    top: 50px;
+    border-radius: 10px;
+    z-index: 10;
+}
+
+.matador-head {
+    position: relative;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: #ffe0bd;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.matador-hair {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 50px;
+    height: 20px;
+    background: rgb(25, 3, 3);
+    clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 80% 70%, 20% 70%, 10% 50%);
+    border: 2px solid gold;
+}
+
+.matador-eyes {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 30px;
+    margin-top: 10px;
+}
+
+.matador-eye {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border: 1px solid black;
+    border-radius: 30%;
+    position: relative;
+}
+
+.matador-eye::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgb(31, 9, 128);
+    border-radius: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.matador-mustache {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 30px;
+    margin-top: 2px;
+    margin: 0 auto;
+}
+
+.mustache {
+    width: 10px;
+    height: 3px;
+    background: black;
+    border-radius: 2px;
+}
+
+.mustache.left {
+    transform: rotate(-30deg);
+}
+
+.mustache.right {
+    transform: rotate(30deg);
+}
+
+.matador-mouth {
+    width: 20px;
+    height: 5px;
+    background: red;
+    border-radius: 0 0 50% 50%;
+    margin-top: 2px;
+}
+
+.matador-arms {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 20px;
+}
+
+.matador-arm {
+    position: absolute;
+    top: 0;
+    width: 15px;
+    height: 40px;
+    border-radius: 10px;
+    background: #ad9f91;
+    border: 2px solid gold;
+}
+
+.matador-arm.left {
+    left: -15px;
+}
+
+.matador-arm.right {
+    right: -15px;
+}
+
+.red-flag {
+    z-index: 5;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 50px;
+    background-color: red;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.red-flag::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(238, 222, 222, 0.5) 20%, rgba(255, 0, 0, 1) 50%, rgba(224, 198, 198, 0.5) 80%);
+    animation: wave 2s infinite linear;
+    transform: translateX(-100%);
+}
+
+@keyframes wave {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.matador-legs {
+    position: absolute;
+    bottom: -30px;
+    width: 100%;
+    height: 60px;
+    z-index: 1; /* Під тілом і прапором */
+}
+
+.matador-leg {
+    position: absolute;
+    bottom: 0;
+    width: 15px;
+    height: 60px;
+    background: #ad9f91;
+    border: 2px solid gold;
+    border-radius: 10px;
+}
+
+.matador-leg.left {
+    left: 5px;
+}
+
+.matador-leg.right {
+    right: 5px;
+}
