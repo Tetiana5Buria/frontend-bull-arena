@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Bull from "./Bull";
+/* import Matador from "./Matador"; */
 
 interface ArenaWithBullProps {
     matador: React.ReactElement;
@@ -18,7 +19,7 @@ const ArenaWithBull = ({ matador }: ArenaWithBullProps) => {
             setApplause(Math.floor(Math.random() * 4))
         }, 1000);
 
-        // purpose Parent rerender 
+        // purpose Parent rerender
         const screamInterval = setInterval(() => {
             setScreamJoy(Math.random())
         }, 800);
@@ -95,4 +96,4 @@ const ArenaWithBull = ({ matador }: ArenaWithBullProps) => {
 export default ArenaWithBull;
 
 
-//  бык бежал, матарод уворачивался 
+//  бык бежал, матарод уворачивался
