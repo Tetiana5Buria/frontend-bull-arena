@@ -51,7 +51,9 @@ export const Matador = ({ applause = 0, setMatarodPosition }: MatadorProps) => {
     ];
     if (applauseType >= 0 && applauseType < sounds.length) {
       const audio = new Audio(sounds[applauseType]);
-      audio.play();
+      audio.play().catch(() => {
+        alert("Please interact with the page first to enable audio playback.");
+      });
     }
   };
 
