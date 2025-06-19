@@ -8,7 +8,7 @@ interface MatadorProps {
   setMatarodPosition?: (position: number) => void;// nothing to return
 }
 
-export const Matador = ({ applause = 0, setMatarodPosition }: MatadorProps) => {
+export const Matador:React.FC = ({ applause = 0, setMatarodPosition }: MatadorProps) => {
   const [matadorPosition, setPosition] = useState(4);//hook
   const [lastApplause, setLastApplause] = useState<number | null>(null); //nothing to return
 
