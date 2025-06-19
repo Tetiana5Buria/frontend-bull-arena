@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-/* import "./matador.css"; */
-import MatadorBodyy from "./MatadorBody";
+  import React, { useEffect, useState } from "react";
+
+import MatadorBody from "./MatadorBody";
 
 interface MatadorProps {
   applause?: number;
@@ -10,57 +10,83 @@ interface MatadorProps {
 
 export const Matador = ({ applause = 0, setMatarodPosition }: MatadorProps) => {
   const [matadorPosition, setPosition] = useState(4);//hook
-  const [lastApplause, setLastApplause] = useState<number | null>(null);
+  const [lastApplause, setLastApplause] = useState<number | null>(null); //nothing to return
+
 
 
 
 //hook
-  useEffect(() => {
-    const handleBullRun = (event: CustomEvent) => {
-      const bullPosition = event.detail.position;
-      if (bullPosition === matadorPosition) {
-        let newPosition= Math.floor(Math.random() * 9);
-         while (newPosition === matadorPosition);
-        console.log (`Matador is moving from ${matadorPosition} to ${newPosition}`);
-        setPosition(newPosition);
-        if (setMatarodPosition) {
-          setMatarodPosition(newPosition); // Синхронізуємо з ArenaWithBull
-        }
+ useEffect(() => {
+  const handleBullRun = (event: CustomEvent) => {
+    const bullPosition = event.detail.position;
+    if (bullPosition === matadorPosition) {
+      let newPosition = Math.floor(Math.random() * 8);
+      while (newPosition === matadorPosition) {
+        newPosition = Math.floor(Math.random() * 8);
+
+
       }
-    };
+ console.log(`Matador is moving from ${matadorPosition} to ${newPosition}`);
+      setPosition(newPosition);
 
-    document.addEventListener("bullRun", handleBullRun as EventListener);
-    return () => {
-      document.removeEventListener("bullRun", handleBullRun as EventListener);
-    };
-  }, [matadorPosition, setMatarodPosition]); // Додаємо залежності
 
-  useEffect(() => {
-    if (applause !== lastApplause) {
-      setLastApplause(applause);
-      playApplauseSound(applause); // Відтворюємо звук для всіх applause
-    }
-  }, [applause, lastApplause]);
-
-  const playApplauseSound = (applauseType: number) => {
-    const sounds = [
-      "/sounds/applause0.wav",
-      "/sounds/applause1.wav",
-      "/sounds/applause2.wav",
-      "/sounds/applause3.wav",
-    ];
-    if (applauseType >= 0 && applauseType < sounds.length) {
-      const audio = new Audio(sounds[applauseType]);
-      audio.play().catch(() => {
-        alert("Please interact with the page first to enable audio playback.");
-      });
+      if (setMatarodPosition) {
+        setMatarodPosition(newPosition); // Синхронізуємо з ArenaWithBull
+      }
     }
   };
 
+  document.addEventListener("bullRun", handleBullRun as EventListener);
+  return () => {
+    document.removeEventListener("bullRun", handleBullRun as EventListener);
+  };
+}, [matadorPosition, setMatarodPosition]);
+
+ useEffect(() => {
+  if (applause !== lastApplause) {
+    setLastApplause(applause);
+
+    if (applause === 3) {
+      playApplauseSound(applause);
+    }
+  }
+}, [applause, lastApplause]);
+
+const playApplauseSound = (applauseType: number) => {
+  let audioSrc = "";
+
+    switch (applauseType) {
+      case 0:
+        audioSrc = "/sounds/applause0.wav";
+        break;
+      case 1:
+        audioSrc = "/sounds/applause1.wav";
+        break;
+      case 2:
+        audioSrc = "/sounds/applause2.wav";
+        break;
+      case 3:
+        audioSrc = "/sounds/applause3.wav";
+        break;
+      default:
+        console.log("Sound not found");
+
+        return;
+    }
+
+    const audio = new Audio(audioSrc);
+    audio
+      .play()
+      .catch(() => console.error("Audio playback failed. Please interact with the page first."));
+  };
+
   return (
+    <>
     <div className="box-canvas">
-    <MatadorBodyy/>
+    <MatadorBody/>
     </div>
+    </>
+
   );
 };
 

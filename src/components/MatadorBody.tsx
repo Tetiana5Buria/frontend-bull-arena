@@ -2,7 +2,7 @@ import React from "react";
 import Matador from "./Matador";
 import "./matador.css"
 
-export const MatadorBodyy =() =>{
+export const MatadorBody =() =>{
     return(
         <div className="bodyMatador">
         <div className="matador-head">
@@ -29,4 +29,4 @@ export const MatadorBodyy =() =>{
       </div>
     )
 }
-export default MatadorBodyy;
+export default MatadorBody;
