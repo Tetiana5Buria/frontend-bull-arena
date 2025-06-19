@@ -4,18 +4,18 @@ import MatadorBody from "./MatadorBody";
 interface MatadorProps {
   applause?: number;
   matadorPosition?: number;
-  setMatarodPosition?: (position: number) => void; // Виправлено опечатку
+  setMatarodPosition?: (position: number) => void;
 }
 
 interface MatadorState {
   matadorPosition: number;
-  lastApplause: number | null|undefined; // Прибрано undefined
-  moveMessage: string | null; // Додано для сповіщення
+  lastApplause: number | null|undefined;
+  moveMessage: string | null;
 }
 
 class Matador extends Component<MatadorProps, MatadorState> {
-  // Ініціалізація стану
-  state: MatadorState = {
+
+  state: MatadorState = { // використання констуруктора вже застаріле
     matadorPosition: 4,
     lastApplause: null,
     moveMessage: null,
