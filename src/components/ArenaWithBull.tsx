@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Bull from "./Bull";
 /* import Matador from "./Matador"; */
+import OldMatador from "./OldMatador";
 
 interface ArenaWithBullProps {
     matador: React.ReactElement;
