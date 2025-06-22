@@ -8,12 +8,13 @@
     position: relative;
     width: 50px;
     height: 100px;
-    background: linear-gradient(to bottom, black, red);
+    background: linear-gradient(to bottom, rgb(22, 1, 1), red);
     margin: auto;
     top: 50px;
     border-radius: 10px;
     z-index: 10;
     margin: auto;
+    border: 2px solid gold;
 }
 
 .matador-head {
@@ -29,7 +30,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    padding-top: 5px; /* Додано для відступу вмісту */
 }
+
+
 
 .matador-hair {
     position: absolute;
@@ -43,11 +47,10 @@
 }
 
 .matador-eyes {
-    position: relative;
     display: flex;
     justify-content: space-between;
     width: 30px;
-    margin-top: 10px;
+    margin-top: 5px; /* Трохи зменшено для гармонії */
 }
 
 .matador-eye {
@@ -72,13 +75,12 @@
 }
 
 .matador-mustache {
-    position: relative;
     display: flex;
     justify-content: space-between;
     width: 30px;
-    margin-top: 2px;
-    margin: 0 auto;
+    margin-top: 5px;
 }
+
 
 .mustache {
     width: 10px;
@@ -96,11 +98,12 @@
 }
 
 .matador-mouth {
+    position: relative;
+    margin-top: 2px;
     width: 20px;
     height: 5px;
     background: red;
     border-radius: 0 0 50% 50%;
-    margin-top: 2px;
 }
 
 .matador-arms {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import MatadorBody from "./MatadorBody";
-import ArenaWithBull from "./ArenaWithBull";
+
 
 interface MatadorProps {
   applause?: number;
@@ -14,6 +14,7 @@ interface MatadorState {
   lastApplause: number | null | undefined;
   moveMessage: string | null;
 }
+
 
 const BoxCanvas = styled.div`
 
@@ -29,7 +30,7 @@ position: relative;
 `;
 
 const MoveMessage = styled.div`
-  top: 30px;
+  top: 80px;
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(206, 178, 178, 0.7);
@@ -38,6 +39,7 @@ const MoveMessage = styled.div`
   border-radius: 5px;
   text-align: center;
   font-size: 16px;
+  font-family: "Courier New", monospace;
 `;
 
 class OldMatador extends React.Component<MatadorProps, MatadorState> {
@@ -70,14 +72,14 @@ class OldMatador extends React.Component<MatadorProps, MatadorState> {
     }
   }
 
-/*   shouldComponentUpdate(nextProps: MatadorProps, nextState: MatadorState) {
+  shouldComponentUpdate(nextProps: MatadorProps, nextState: MatadorState) {
     return (
       nextProps.applause !== this.props.applause ||
       nextState.matadorPosition !== this.state.matadorPosition ||
       nextState.moveMessage !== this.state.moveMessage ||
       nextState.lastApplause !== this.state.lastApplause
     );
-  } */
+  }
 
   handleBullRun = (event: CustomEvent<{ position: number }>) => {
     const bullPosition = Number(event.detail.position);
@@ -133,10 +135,12 @@ class OldMatador extends React.Component<MatadorProps, MatadorState> {
 
     return (
   <>
+
   <BoxCanvas>
-          <MatadorBody />
-          {moveMessage && <MoveMessage>{moveMessage}</MoveMessage>}
-        </BoxCanvas>
+    <MatadorBody />
+    {moveMessage && <MoveMessage>{moveMessage}</MoveMessage>}
+  </BoxCanvas>
+
 
   </>
 
