@@ -2,32 +2,15 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import MatadorBody from "./MatadorBody";
 
-
-interface MatadorProps {
-  applause?: number;
-  matadorPosition?: number;
-  setMatarodPosition?: (position: number) => void;
-}
-
-interface MatadorState {
-  matadorPosition: number;
-  lastApplause: number | null | undefined;
-  moveMessage: string | null;
-}
-
-
 const BoxCanvas = styled.div`
 
 position: relative;
   margin: auto;
   display: block;
-  /* margin-top: 100px; */
-  /* margin-bottom: 100px; */
   width: calc(500px / 2);
   height: calc(400px / 2);
+`
 
-}
-`;
 
 const MoveMessage = styled.div`
   top: 80px;
@@ -41,6 +24,20 @@ const MoveMessage = styled.div`
   font-size: 16px;
   font-family: "Courier New", monospace;
 `;
+interface MatadorProps {
+  applause?: number;
+  matadorPosition?: number;
+  setMatarodPosition?: (position: number) => void;
+}
+
+interface MatadorState {
+  matadorPosition: number;
+  lastApplause: number | null | undefined;
+  moveMessage: string | null;
+}
+
+
+
 
 class OldMatador extends React.Component<MatadorProps, MatadorState> {
   state: MatadorState = {
@@ -86,12 +83,12 @@ class OldMatador extends React.Component<MatadorProps, MatadorState> {
     const { matadorPosition } = this.state;
 
     if (bullPosition === matadorPosition) {
-      let newPosition = Math.floor(Math.random() * 8);
+      let newPosition = Math.floor(Math.random() * 9);
       while (newPosition === matadorPosition) {
-        newPosition = Math.floor(Math.random() * 8);
+        newPosition = Math.floor(Math.random() * 9);
       }
 
-      const message = `Matador is moving from ${matadorPosition} to ${newPosition}`;
+      const message = `OldMatador is moving from ${matadorPosition} to ${newPosition}`;
       console.log(message);
 
       this.setState(

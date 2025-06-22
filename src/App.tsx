@@ -6,9 +6,8 @@ import OldMatador  from'./components/OldMatador'
 function App() {
   return (
     <div className="App">
-      <ArenaWithBull
-     matador={<Matador />} />
-  {/*   matador = {<OldMatador/>} />  */}
+{/*       <ArenaWithBull matador={<Matador />} /> */}
+     <ArenaWithBull  matador = {<OldMatador/>} />
     </div>
   )
 }

@@ -2,7 +2,15 @@
 import styled from "styled-components";
 import MatadorBody from "./MatadorBody";
 
-  const MoveMessage = styled.div`
+const BoxCanvass = styled.div`
+  position: relative;
+  margin: auto;
+  display: block;
+  width: calc(500px / 2);
+  height: calc(400px / 2);
+`;
+
+const MoveMessage = styled.div`
   top: 80px;
   left: 50%;
   transform: translateX(-50%);
@@ -13,16 +21,23 @@ import MatadorBody from "./MatadorBody";
   text-align: center;
   font-size: 16px;
   font-family: "Arial", sans-serif;
-z-index:10;
+  z-index: 10;
 `;
+
+const Mustache = styled.div `
+width: 10px;
+  height: 3px;
+  background: black;
+  border-radius: 2px;
+`
+
 
 interface MatadorProps {
   applause?: number;
   matadorPosition?: number;
   setMatarodPosition?: (position: number) => void;// nothing to return
 }
-
-export const Matador:React.FC = ({ applause = 0, setMatarodPosition }: MatadorProps) => {
+export const Matador: React.FC<MatadorProps> = ({ applause=0, setMatarodPosition }) => {
   const [matadorPosition, setPosition] = useState(4);//hook
   const [lastApplause, setLastApplause] = useState<number | null>(null); //nothing to return
   const [moveMessage, setMoveMessage] = useState<string | null>(null);
@@ -34,9 +49,9 @@ useEffect(() => {
   const handleBullRun = (event: CustomEvent<{ position: number }>) => {
     const bullPosition = event.detail.position;
     if (bullPosition === matadorPosition) {
-      let newPosition = Math.floor(Math.random() * 8);
+      let newPosition = Math.floor(Math.random() * 9);
       while (newPosition === matadorPosition) {
-        newPosition = Math.floor(Math.random() * 8);
+        newPosition = Math.floor(Math.random() * 9);
       }
       const moveMessage = `Matador is moving from ${matadorPosition} to ${newPosition}`;
       console.log(moveMessage);
@@ -65,13 +80,12 @@ useEffect(() => {
   }
 }, [moveMessage]);
 
- useEffect(() => {
-  if (applause !== lastApplause) {
+useEffect(() => {
+  if (applause !== lastApplause && applause === 3) {
     setLastApplause(applause);
-
-    if (applause === 3) {
-      playApplauseSound(applause);
-    }
+    playApplauseSound(applause);
+  } else if (applause !== lastApplause) {
+    playApplauseSound(applause);
   }
 }, [applause, lastApplause]);
 
@@ -104,13 +118,12 @@ const playApplauseSound = (applauseType: number) => {
   };
 
   return (
-    <>
-    <div className="box-canvas">
-    <MatadorBody/>
-    {moveMessage && <MoveMessage>{moveMessage}</MoveMessage>}
-    </div>
-    </>
 
+
+    <BoxCanvass>
+     <MatadorBody/>
+    {moveMessage && <MoveMessage>{moveMessage}</MoveMessage>}
+    </BoxCanvass>
   );
 };
 
