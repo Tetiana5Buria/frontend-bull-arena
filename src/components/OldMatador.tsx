@@ -2,244 +2,268 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const BoxCanvas = styled.div`
-  position: relative;
-  margin: auto;
-  display: block;
-  width: calc(500px / 2);
+margin: auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+ width: calc(500px / 2);
   height: calc(400px / 2);
+position: relative;
 `;
 
 const MoveMessage = styled.div`
-  top: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(206, 178, 178, 0.7);
-  color: red;
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 16px;
-  font-family: "Courier New", monospace;
+position: absolute;
+top: 80px;
+left: 50%;
+transform: translateX(-50%);
+background-color: rgba(148, 115, 91, 0.7);
+color: #fff;
+padding: 8px 16px;
+border-radius: 5px;
+text-align: center;
+font-size: 14px;
+font-family: "Georgia", serif;
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+z-index:10;
 `;
 
 const BodyMatador = styled.div`
-  position: relative;
-  width: 50px;
-  height: 100px;
-  background: linear-gradient(to bottom,rgb(209, 206, 193),rgb(224, 218, 211)); /* Dark jacket with ornate brown pants */
-  margin: auto;
-  top: 50px;
-  border-radius: 10px;
-  z-index: 10;
-  border: 2px solid gold;
+position: relative;
+width: 60px;
+height: 100px;
+background: linear-gradient(
+  to bottom,
+  #2f2f2f 40%,
+  #4a3728 100%
+);
+border-radius: 12px;
+z-index: 10;
+border: 3px solid #b8860b;
+box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
 `;
 
 const MatadorHead = styled.div`
-  position: relative;
-  top: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
-  background: #ffe0bd;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 5px;
+position: relative;
+top:-50px;
+left: 50%;
+transform: translateX(-50%);
+width: 50px;
+height: 50px;
+background: #e6c8a0;
+border-radius: 50%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+padding-top: 8px;
+box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.2);
 `;
 
 const MatadorHair = styled.div`
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: 50px;
-  height: 20px;
-  background: #d3d3d3;
-  clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 80% 70%, 20% 70%, 10% 50%);
-  border: 2px solid gold;
+position: absolute;
+top: -8px;
+left: -8px;
+width: 66px;
+height: 25px;
+background: #a9a9a9;
+clip-path: polygon(0% 0%, 100% 0%, 90% 60%, 80% 80%, 20% 80%, 10% 60%);
+border: 2px solid #b8860b;
+box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
 `;
 
 const MatadorEyes = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 30px;
-  margin-top: 5px;
+display: flex;
+justify-content: space-between;
+width: 36px;
+margin-top: 8px;
 `;
 
 const MatadorEye = styled.div`
-  width: 8px;
-  height: 8px;
-  background: white;
-  border: 1px solid black;
-  border-radius: 30%;
-  position: relative;
+width: 10px;
+height: 10px;
+background: #f5f5f5;
+border: 1px solid #333;
+border-radius: 50%;
+position: relative;
 
-  &::before {
-    content: "";
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgb(9, 128, 70);
-    border-radius: 80%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+&::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #2e5d34;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 `;
 
-
 const MatadorMustache = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 30px;
-  margin-top: 5px;
+display: flex;
+justify-content: space-between;
+width: 40px;
+margin-top: 6px;
 `;
 
 const Mustache = styled.div`
-  width: 12px;
-  height: 4px;
-  background: #d3d3d3;
-  border-radius: 2px;
+width: 16px;
+height: 6px;
+background: linear-gradient(to right, #a9a9a9, #808080);
+border-radius: 3px;
 
-  &.left {
-    transform: rotate(-50deg);
-  }
+&.left {
+  transform: rotate(-45deg);
+}
 
-  &.right {
-    transform: rotate(50deg);
-  }
+&.right {
+  transform: rotate(45deg);
+}
 `;
 
 const MatadorMouth = styled.div`
-  position: relative;
-  margin-top: 2px;
-  width: 20px;
-  height: 5px;
-  background: red;
-  border-radius: 0 0 50% 50%;
+position: relative;
+margin-top: 4px;
+width: 24px;
+height: 6px;
+background: #8b0000;
+border-radius: 0 0 50% 50%;
+box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.3);
 `;
 
 const MatadorArms = styled.div`
-  position: absolute;
-  top: 10px;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 20px;
+position: absolute;
+top: 15px;
+left: 0;
+right: 0;
+width: 100%;
+height: 25px;
 `;
 
 const MatadorArm = styled.div`
-  position: absolute;
-  top: 0;
-  width: 15px;
-  height: 40px;
-  border-radius: 10px;
-  background:rgb(149, 145, 141); /* Matching dark jacket */
-  border: 2px solid gold;
+position: absolute;
+top: 0;
+width: 18px;
+height: 50px;
+border-radius: 12px;
+background: linear-gradient(to bottom, #2f2f2f, #3c3c3c);
+border: 2px solid #b8860b;
+box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
 
-  &.left {
-    left: -15px;
-  }
+&.left {
+  left: -18px;
+  transform: rotate(10deg);
+}
 
-  &.right {
-    right: -15px;
-  }
+&.right {
+  right: -18px;
+  transform: rotate(-10deg);
+}
 `;
 
 const RedFlag = styled.div`
-  z-index: 5;
-  position: absolute;
-  top: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 50px;
-  background-color: red;
-  border-radius: 5px;
-  overflow: hidden;
+z-index: 5;
+position: absolute;
+top: 40px;
+left: 50%;
+transform: translateX(-50%);
+width: 120px;
+height: 60px;
+background: #8b0000;
+border-radius: 5px;
+overflow: hidden;
+border: 2px solid #b8860b;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(238, 222, 222, 0.5) 20%,
-      rgba(255, 0, 0, 1) 50%,
-      rgba(224, 198, 198, 0.5) 80%
-    );
-    animation: wave 2s infinite linear;
+&::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(139, 0, 0, 0.5) 20%,
+    rgba(178, 34, 34, 0.8) 50%,
+    rgba(139, 0, 0, 0.5) 80%
+  );
+  animation: wave 3s infinite ease-in-out;
+  transform: translateX(-100%);
+}
+
+@keyframes wave {
+  0% {
     transform: translateX(-100%);
   }
-
-  @keyframes wave {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0%);
-    }
+  100% {
+    transform: translateX(0%);
   }
+}
 `;
 
 const MatadorLegs = styled.div`
-  position: absolute;
-  bottom: -30px;
-  width: 100%;
-  height: 60px;
-  z-index: 1;
+position: absolute;
+width: 100%;
+height: 100px;
+gap:2px;
+z-index: 1;
 `;
 
 const MatadorLeg = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 15px;
-  height: 60px;
-  background:rgb(223, 215, 206); /* Matching ornate pants */
-  border: 2px solid gold;
-  border-radius: 10px;
+position: absolute;
+bottom: 0;
+width: 25px;
+height: 80px;
+gap:2px;
+background: linear-gradient(to bottom, #4a3728, #3b2c1f);
+border: 2px solid #b8860b;
+border-radius: 12px;
+box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
 
-  &.left {
-    left: 5px;
-  }
+&.left {
+  left: 10px;
+  transform: rotate(10deg);
+}
 
-  &.right {
-    right: 5px;
-  }
+&.right {
+  right: 10px;
+  transform: rotate(-10deg);
+}
 `;
 
 const MatadorBody = () => (
-  <BodyMatador>
-    <MatadorHead>
-      <MatadorHair />
-      <MatadorEyes>
-        <MatadorEye />
-        <MatadorEye />
-      </MatadorEyes>
-      <MatadorMustache>
-        <Mustache className="left" />
-        <Mustache className="right" />
-      </MatadorMustache>
-      <MatadorMouth />
-    </MatadorHead>
-    <MatadorArms>
-      <MatadorArm className="left" />
-      <MatadorArm className="right" />
-    </MatadorArms>
-    <RedFlag />
-    <MatadorLegs>
-      <MatadorLeg className="left" />
-      <MatadorLeg className="right" />
-    </MatadorLegs>
-  </BodyMatador>
+<BodyMatador>
+  <MatadorHead>
+    <MatadorHair />
+    <MatadorEyes>
+      <MatadorEye />
+      <MatadorEye />
+    </MatadorEyes>
+    <MatadorMustache>
+      <Mustache className="left" />
+      <Mustache className="right" />
+    </MatadorMustache>
+    <MatadorMouth />
+  </MatadorHead>
+  <MatadorArms>
+    <MatadorArm className="left" />
+    <MatadorArm className="right" />
+  </MatadorArms>
+  <RedFlag />
+  <MatadorLegs>
+    <MatadorLeg className="left" />
+    <MatadorLeg className="right" />
+  </MatadorLegs>
+</BodyMatador>
+);
+
+const App = () => (
+<BoxCanvas className="mt-10">
+  <MoveMessage>Seasoned Matador</MoveMessage>
+  <MatadorBody />
+</BoxCanvas>
 );
 
 

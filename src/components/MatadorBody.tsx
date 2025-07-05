@@ -1,7 +1,7 @@
 import React from "react";
 import Matador from "./Matador";
 import "./matador.css"
-import "./OldMatador"
+/* import "./OldMatador" */
 
 export const MatadorBody =() =>{
     return(
